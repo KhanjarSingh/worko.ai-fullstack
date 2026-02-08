@@ -197,7 +197,7 @@ const Dashboard = () => {
                             <div className="mt-auto space-y-4">
                                 {candidate.resumeUrl ? (
                                     <a
-                                        href={candidate.resumeUrl}
+                                        href={`${api.defaults.baseURL}/candidates/${candidate._id}/resume`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="block w-full"

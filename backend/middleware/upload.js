@@ -12,7 +12,7 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         folder: 'candidate-resumes',
-        resource_type: 'raw', 
+        resource_type: 'raw',
         allowed_formats: ['pdf'],
         public_id: (req, file) => {
             const timestamp = Date.now();

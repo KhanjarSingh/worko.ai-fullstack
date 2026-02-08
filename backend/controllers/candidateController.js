@@ -1,5 +1,6 @@
 const Candidate = require('../models/Candidate');
 const { validationResult } = require('express-validator');
+const axios = require('axios');
 
 const getCandidates = async (req, res) => {
     try {
@@ -15,6 +16,34 @@ const getCandidates = async (req, res) => {
         const candidates = await Candidate.find(query).sort({ createdAt: -1 });
         res.status(200).json({ count: candidates.length, candidates });
     } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+const viewResume = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const candidate = await Candidate.findById(id);
+
+        if (!candidate || !candidate.resumeUrl) {
+            return res.status(404).json({ message: 'Resume not found' });
+        }
+
+        try {
+            const resumeUrl = candidate.resumeUrl;
+            const response = await axios.get(resumeUrl, { responseType: 'stream' });
+
+            res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader('Content-Disposition', 'inline; filename="resume.pdf"');
+            res.setHeader('Cache-Control', 'public, max-age=31536000');
+
+            response.data.pipe(res);
+        } catch (cloudinaryError) {
+            console.error('Cloudinary fetch error:', cloudinaryError.message);
+            res.status(500).json({ message: 'Error fetching resume from storage' });
+        }
+    } catch (error) {
+        console.error('Resume view error:', error.message);
         res.status(500).json({ message: error.message });
     }
 };
@@ -92,5 +121,6 @@ module.exports = {
     createCandidate,
     updateCandidateStatus,
     deleteCandidate,
-    getCandidateStats
+    getCandidateStats,
+    viewResume
 };

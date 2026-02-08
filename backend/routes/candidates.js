@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const upload = require('../middleware/upload');
-const { getCandidates, createCandidate, updateCandidateStatus, deleteCandidate, getCandidateStats } = require('../controllers/candidateController');
+const { getCandidates, createCandidate, updateCandidateStatus, deleteCandidate, getCandidateStats, viewResume } = require('../controllers/candidateController');
 const { check } = require('express-validator');
 
 router.get('/stats', getCandidateStats);
+
+router.get('/:id/resume', viewResume);
 
 router.get('/', getCandidates);
 
