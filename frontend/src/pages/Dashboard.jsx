@@ -92,7 +92,7 @@ const Dashboard = () => {
                             <User className="h-6 w-6" />
                         </div>
                     </Card>
-                    <Card className="flex items-center justify-between p-6 border-l-4 border-yellow-400">
+                    <Card className="flex items-center justify-between p-6">
                         <div>
                             <p className="text-slate-500 text-sm font-medium">Pending</p>
                             <p className="text-3xl font-bold text-slate-900 mt-1">{stats.pending}</p>
@@ -101,7 +101,7 @@ const Dashboard = () => {
                             <Briefcase className="h-6 w-6" />
                         </div>
                     </Card>
-                    <Card className="flex items-center justify-between p-6 border-l-4 border-blue-400">
+                    <Card className="flex items-center justify-between p-6">
                         <div>
                             <p className="text-slate-500 text-sm font-medium">Reviewed</p>
                             <p className="text-3xl font-bold text-slate-900 mt-1">{stats.reviewed}</p>
@@ -110,7 +110,7 @@ const Dashboard = () => {
                             <Search className="h-6 w-6" />
                         </div>
                     </Card>
-                    <Card className="flex items-center justify-between p-6 border-l-4 border-green-400">
+                    <Card className="flex items-center justify-between p-6">
                         <div>
                             <p className="text-slate-500 text-sm font-medium">Hired</p>
                             <p className="text-3xl font-bold text-slate-900 mt-1">{stats.hired}</p>
