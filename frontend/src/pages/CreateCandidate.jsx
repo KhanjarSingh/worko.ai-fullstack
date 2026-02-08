@@ -70,19 +70,19 @@ const CreateCandidate = () => {
                                     </button>
                                 </div>
                             ) : (
-                                <div className="p-8 text-center">
+                                <label htmlFor="resume" className="block w-full h-full p-8 text-center cursor-pointer">
                                     <div className="mx-auto h-12 w-12 text-slate-300 mb-3">
                                         <Upload className="h-full w-full" />
                                     </div>
                                     <div className="flex text-sm text-slate-600 justify-center mb-1">
-                                        <label htmlFor="resume" className="relative cursor-pointer rounded-md font-medium text-[#162c44] hover:text-[#1b3a5b] focus-within:outline-none">
+                                        <span className="relative rounded-md font-medium text-[#162c44] hover:text-[#1b3a5b] focus-within:outline-none">
                                             <span>Upload a file</span>
-                                            <input id="resume" name="resume" type="file" className="sr-only" accept=".pdf" onChange={handleFileChange} />
-                                        </label>
+                                        </span>
                                         <p className="pl-1">or drag and drop</p>
                                     </div>
                                     <p className="text-xs text-slate-400">PDF up to 5MB</p>
-                                </div>
+                                    <input id="resume" name="resume" type="file" className="sr-only" accept=".pdf" onChange={handleFileChange} />
+                                </label>
                             )}
                         </div>
                     </div>
