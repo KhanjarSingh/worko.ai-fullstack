@@ -7,7 +7,6 @@ import Card from '../components/Card';
 const LandingPage = () => {
     return (
         <div className="min-h-screen bg-white">
-            {/* Hero Section */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
                 <h1 className="text-5xl md:text-6xl font-bold text-[#162c44] tracking-tight mb-6">
                     Hiring, simplified settings.
@@ -30,7 +29,6 @@ const LandingPage = () => {
                 </div>
             </div>
 
-            {/* Features Section */}
             <div className="bg-slate-50 py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">

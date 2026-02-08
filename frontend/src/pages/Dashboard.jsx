@@ -74,7 +74,7 @@ const Dashboard = () => {
                     <p className="text-slate-500 mt-2">Manage your candidate pipeline efficiently.</p>
                 </div>
                 <Link to="/create-candidate">
-                    <Button className="flex items-center gap-2 shadow-indigo-300 shadow-lg hover:shadow-xl hover:shadow-indigo-300 transform transition-all hover:-translate-y-0.5">
+                    <Button className="flex items-center gap-2 shadow-[#162c44]/20 shadow-lg">
                         <Plus className="h-5 w-5" />
                         Refer Candidate
                     </Button>
@@ -88,7 +88,7 @@ const Dashboard = () => {
                             <p className="text-slate-500 text-sm font-medium">Total Candidates</p>
                             <p className="text-3xl font-bold text-slate-900 mt-1">{stats.total}</p>
                         </div>
-                        <div className="bg-indigo-50 p-3 rounded-xl text-indigo-600">
+                        <div className="bg-[#162c44]/5 p-3 rounded-xl text-[#162c44]">
                             <User className="h-6 w-6" />
                         </div>
                     </Card>
@@ -153,7 +153,7 @@ const Dashboard = () => {
 
             {loading ? (
                 <div className="text-center py-20">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#162c44] mx-auto"></div>
                     <p className="mt-4 text-slate-500">Loading candidates...</p>
                 </div>
             ) : candidates.length === 0 ? (

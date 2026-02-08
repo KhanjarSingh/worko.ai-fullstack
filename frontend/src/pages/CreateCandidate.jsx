@@ -53,11 +53,11 @@ const CreateCandidate = () => {
 
                     <div>
                         <label className="block text-sm font-semibold text-slate-700 mb-2">Resume (PDF)</label>
-                        <div className={`mt-1 border-2 border-dashed rounded-xl transition-all ${resume ? 'border-indigo-300 bg-indigo-50/50' : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'}`}>
+                        <div className={`mt-1 border-2 border-dashed rounded-xl transition-all ${resume ? 'border-[#162c44]/30 bg-[#162c44]/5' : 'border-slate-200 hover:border-[#162c44]/30 hover:bg-slate-50'}`}>
                             {resume ? (
                                 <div className="p-6 flex items-center justify-between">
                                     <div className="flex items-center gap-3">
-                                        <div className="p-2 bg-indigo-100 rounded-lg text-indigo-600">
+                                        <div className="p-2 bg-[#162c44]/10 rounded-lg text-[#162c44]">
                                             <Upload className="h-5 w-5" />
                                         </div>
                                         <div>
@@ -75,7 +75,7 @@ const CreateCandidate = () => {
                                         <Upload className="h-full w-full" />
                                     </div>
                                     <div className="flex text-sm text-slate-600 justify-center mb-1">
-                                        <label htmlFor="resume" className="relative cursor-pointer rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none">
+                                        <label htmlFor="resume" className="relative cursor-pointer rounded-md font-medium text-[#162c44] hover:text-[#1b3a5b] focus-within:outline-none">
                                             <span>Upload a file</span>
                                             <input id="resume" name="resume" type="file" className="sr-only" accept=".pdf" onChange={handleFileChange} />
                                         </label>
