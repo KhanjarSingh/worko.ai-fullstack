@@ -71,7 +71,7 @@ const Dashboard = () => {
             <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
                 <div>
                     <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Dashboard</h1>
-                    <p className="text-slate-500 mt-2">Manage your candidate pipeline efficiently.</p>
+                    <p className="text-slate-500 mt-2">Streamline your recruitment workflow and hire top talent.</p>
                 </div>
                 <Link to="/create-candidate">
                     <Button className="flex items-center gap-2 shadow-[#162c44]/20 shadow-lg">
