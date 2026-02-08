@@ -28,11 +28,13 @@ POST /auth/register
 ```
 
 **Request Headers:**
+
 ```
 Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "name": "John Doe",
@@ -43,6 +45,7 @@ Content-Type: application/json
 ```
 
 **Response (201 Created):**
+
 ```json
 {
   "success": true,
@@ -57,12 +60,14 @@ Content-Type: application/json
 ```
 
 **Validation Rules:**
+
 - `name`: Required, string
 - `email`: Required, valid email format, must be unique
 - `password`: Required, minimum 6 characters
 - `role`: Optional, default is "user"
 
 **Error Responses:**
+
 - `400`: Email already exists
 - `400`: Validation error in request body
 - `500`: Server error
@@ -78,11 +83,13 @@ POST /auth/login
 ```
 
 **Request Headers:**
+
 ```
 Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "email": "john@example.com",
@@ -91,6 +98,7 @@ Content-Type: application/json
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -105,6 +113,7 @@ Content-Type: application/json
 ```
 
 **Error Responses:**
+
 - `400`: Missing email or password
 - `401`: Invalid credentials
 - `500`: Server error
@@ -120,12 +129,14 @@ GET /auth/me
 ```
 
 **Request Headers:**
+
 ```
 Authorization: Bearer {token}
 Content-Type: application/json
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "user": {
@@ -140,6 +151,7 @@ Content-Type: application/json
 ```
 
 **Error Responses:**
+
 - `401`: Not authorized / Invalid token
 - `500`: Server error
 
@@ -156,6 +168,7 @@ GET /candidates
 ```
 
 **Request Headers:**
+
 ```
 Authorization: Bearer {token}
 Content-Type: application/json
@@ -168,11 +181,13 @@ Content-Type: application/json
 | `status` | string | No | Filter by status: "Pending", "Reviewed", "Hired" |
 
 **Example Request:**
+
 ```
 GET /candidates?search=John&status=Pending
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "count": 2,
@@ -204,6 +219,7 @@ GET /candidates?search=John&status=Pending
 ```
 
 **Error Responses:**
+
 - `401`: Not authorized
 - `500`: Server error
 
@@ -218,12 +234,14 @@ GET /candidates/stats
 ```
 
 **Request Headers:**
+
 ```
 Authorization: Bearer {token}
 Content-Type: application/json
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "total": 15,
@@ -234,6 +252,7 @@ Content-Type: application/json
 ```
 
 **Error Responses:**
+
 - `401`: Not authorized
 - `500`: Server error
 
@@ -248,16 +267,19 @@ GET /candidates/{id}/resume
 ```
 
 **Request Headers:**
+
 ```
 (No authentication required)
 ```
 
 **Response (200 OK):**
+
 - Returns PDF file with headers:
   - `Content-Type: application/pdf`
   - `Content-Disposition: inline`
 
 **Error Responses:**
+
 - `404`: Resume not found
 - `500`: Error fetching resume
 
@@ -272,6 +294,7 @@ POST /candidates
 ```
 
 **Request Headers:**
+
 ```
 Authorization: Bearer {token}
 Content-Type: multipart/form-data
@@ -287,6 +310,7 @@ Content-Type: multipart/form-data
 | `resume` | file | ❌ | PDF only, max 5MB |
 
 **Example Request (cURL):**
+
 ```bash
 curl -X POST http://localhost:3000/api/candidates \
   -H "Authorization: Bearer {token}" \
@@ -298,6 +322,7 @@ curl -X POST http://localhost:3000/api/candidates \
 ```
 
 **Response (201 Created):**
+
 ```json
 {
   "message": "Candidate referred successfully",
@@ -316,6 +341,7 @@ curl -X POST http://localhost:3000/api/candidates \
 ```
 
 **Error Responses:**
+
 - `400`: Validation error / Email already exists
 - `401`: Not authorized
 - `400`: Only PDF files are allowed
@@ -333,12 +359,14 @@ PUT /candidates/{id}/status
 ```
 
 **Request Headers:**
+
 ```
 Authorization: Bearer {token}
 Content-Type: application/json
 ```
 
 **Request Body:**
+
 ```json
 {
   "status": "Reviewed"
@@ -346,11 +374,13 @@ Content-Type: application/json
 ```
 
 **Allowed Status Values:**
+
 - `"Pending"` - Initial status
 - `"Reviewed"` - Under review
 - `"Hired"` - Hired
 
 **Response (200 OK):**
+
 ```json
 {
   "message": "Status updated to Reviewed",
@@ -369,6 +399,7 @@ Content-Type: application/json
 ```
 
 **Error Responses:**
+
 - `400`: Invalid status value
 - `401`: Not authorized
 - `404`: Candidate not found
@@ -385,12 +416,14 @@ DELETE /candidates/{id}
 ```
 
 **Request Headers:**
+
 ```
 Authorization: Bearer {token}
 Content-Type: application/json
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "message": "Candidate deleted successfully"
@@ -398,6 +431,7 @@ Content-Type: application/json
 ```
 
 **Error Responses:**
+
 - `401`: Not authorized
 - `404`: Candidate not found
 - `500`: Server error
@@ -437,15 +471,15 @@ Content-Type: application/json
 
 ### HTTP Status Codes
 
-| Code | Meaning | Example |
-|------|---------|---------|
-| 200 | OK | Successfully retrieved data |
-| 201 | Created | Candidate successfully created |
-| 400 | Bad Request | Invalid input data |
-| 401 | Unauthorized | Missing or invalid token |
-| 404 | Not Found | Resource not found |
-| 413 | Payload Too Large | File size exceeds limit |
-| 500 | Server Error | Internal server error |
+| Code | Meaning           | Example                        |
+| ---- | ----------------- | ------------------------------ |
+| 200  | OK                | Successfully retrieved data    |
+| 201  | Created           | Candidate successfully created |
+| 400  | Bad Request       | Invalid input data             |
+| 401  | Unauthorized      | Missing or invalid token       |
+| 404  | Not Found         | Resource not found             |
+| 413  | Payload Too Large | File size exceeds limit        |
+| 500  | Server Error      | Internal server error          |
 
 ### Error Response Example
 
@@ -479,16 +513,19 @@ Content-Type: application/json
 All protected endpoints require a JWT token in the Authorization header.
 
 **Format:**
+
 ```
 Authorization: Bearer {token}
 ```
 
 **Token Structure:**
+
 ```
 Header.Payload.Signature
 ```
 
 **Payload Contains:**
+
 ```json
 {
   "id": "507f1f77bcf86cd799439011",
@@ -510,6 +547,7 @@ Header.Payload.Signature
 ### Example 1: Complete User Flow
 
 **Step 1: Register**
+
 ```bash
 curl -X POST http://localhost:3000/api/auth/register \
   -H "Content-Type: application/json" \
@@ -521,6 +559,7 @@ curl -X POST http://localhost:3000/api/auth/register \
 ```
 
 **Step 2: Login**
+
 ```bash
 curl -X POST http://localhost:3000/api/auth/login \
   -H "Content-Type: application/json" \
@@ -531,6 +570,7 @@ curl -X POST http://localhost:3000/api/auth/login \
 ```
 
 **Step 3: Get Current User**
+
 ```bash
 curl -X GET http://localhost:3000/api/auth/me \
   -H "Authorization: Bearer {token_from_login}"
@@ -541,6 +581,7 @@ curl -X GET http://localhost:3000/api/auth/me \
 ### Example 2: Candidate Management Flow
 
 **Step 1: Create Candidate**
+
 ```bash
 curl -X POST http://localhost:3000/api/candidates \
   -H "Authorization: Bearer {token}" \
@@ -552,18 +593,21 @@ curl -X POST http://localhost:3000/api/candidates \
 ```
 
 **Step 2: Get All Candidates**
+
 ```bash
 curl -X GET http://localhost:3000/api/candidates \
   -H "Authorization: Bearer {token}"
 ```
 
 **Step 3: Get Statistics**
+
 ```bash
 curl -X GET http://localhost:3000/api/candidates/stats \
   -H "Authorization: Bearer {token}"
 ```
 
 **Step 4: Update Status**
+
 ```bash
 curl -X PUT http://localhost:3000/api/candidates/{id}/status \
   -H "Authorization: Bearer {token}" \
@@ -574,11 +618,13 @@ curl -X PUT http://localhost:3000/api/candidates/{id}/status \
 ```
 
 **Step 5: View Resume**
+
 ```bash
 curl -X GET http://localhost:3000/api/candidates/{id}/resume
 ```
 
 **Step 6: Delete Candidate**
+
 ```bash
 curl -X DELETE http://localhost:3000/api/candidates/{id} \
   -H "Authorization: Bearer {token}"
@@ -589,16 +635,19 @@ curl -X DELETE http://localhost:3000/api/candidates/{id} \
 ### Example 3: Search and Filter
 
 **Search by name:**
+
 ```bash
 GET /candidates?search=John
 ```
 
 **Filter by status:**
+
 ```bash
 GET /candidates?status=Pending
 ```
 
 **Search and filter combined:**
+
 ```bash
 GET /candidates?search=Engineer&status=Reviewed
 ```
@@ -619,6 +668,7 @@ GET /candidates?search=Engineer&status=Reviewed
 ## 📞 Support
 
 For API issues or questions:
+
 - Check error messages and HTTP status codes
 - Verify request headers and body format
 - Ensure authentication token is valid and not expired

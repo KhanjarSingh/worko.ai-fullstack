@@ -10,36 +10,36 @@ A full-stack MERN application for managing candidate referrals. Users can regist
 
 ---
 
-## ✅ Features Implemented
+## Features Implemented
 
-### Core Requirements (All Completed ✓)
+### Core Requirements (All Completed)
 
 **Frontend**
-- ✅ Dashboard displaying referred candidates
-- ✅ Candidate cards with Name, Job Title, Status
-- ✅ Search bar to filter by job title or status
-- ✅ Referral form with Name, Email, Phone, Job Title, Resume
-- ✅ PDF resume upload (5MB limit, PDF only)
-- ✅ Update candidate status (Pending → Reviewed → Hired)
+- Dashboard displaying referred candidates
+- Candidate cards with Name, Job Title, Status
+- Search bar to filter by job title or status
+- Referral form with Name, Email, Phone, Job Title, Resume
+- PDF resume upload (5MB limit, PDF only)
+- Update candidate status (Pending → Reviewed → Hired)
 
 **Backend**
-- ✅ `POST /candidates` - Save new candidate
-- ✅ `GET /candidates` - Fetch all candidates
-- ✅ `PUT /candidates/:id/status` - Update status
-- ✅ `DELETE /candidates/:id` - Delete candidate
-- ✅ Email and phone validation
-- ✅ PDF format restriction
-- ✅ Error handling and validation
+- `POST /candidates` - Save new candidate
+- `GET /candidates` - Fetch all candidates
+- `PUT /candidates/:id/status` - Update status
+- `DELETE /candidates/:id` - Delete candidate
+- Email and phone validation
+- PDF format restriction
+- Error handling and validation
 
-### Bonus Features (All Implemented ✓)
+### Bonus Features (All Implemented)
 
-- ✅ **JWT Authentication** - Secure user login/registration
-- ✅ **Cloud Storage** - Cloudinary for resume management
-- ✅ **Deployment** - Vercel (frontend) + Render (backend)
-- ✅ **Metrics Dashboard** - Total, Pending, Reviewed, Hired stats
-- ✅ **Resume Viewer** - PDFs open inline in browser
-- ✅ **API Documentation** - Complete reference guide
-- ✅ **Postman Collection** - Pre-configured for testing
+- **JWT Authentication** - Secure user login/registration
+- **Cloud Storage** - Cloudinary for resume management
+- **Deployment** - Vercel (frontend) + Render (backend)
+- **Metrics Dashboard** - Total, Pending, Reviewed, Hired stats
+- **Resume Viewer** - PDFs open inline in browser
+- **API Documentation** - Complete reference guide
+- **Postman Collection** - Pre-configured for testing
 
 ---
 
@@ -315,16 +315,16 @@ VITE_API_URL=http://localhost:3000/api
 
 ## ✨ What's Included
 
-✅ Full MERN stack application  
-✅ User authentication with JWT  
-✅ Candidate management system  
-✅ Resume upload to cloud  
-✅ Statistics dashboard  
-✅ Responsive UI design  
-✅ Complete API documentation  
-✅ Postman collection for testing  
-✅ Deployed and running live  
-✅ Production-ready code  
+- Full MERN stack application  
+- User authentication with JWT  
+- Candidate management system  
+- Resume upload to cloud  
+- Statistics dashboard  
+- Responsive UI design  
+- Complete API documentation  
+- Postman collection for testing  
+- Deployed and running live  
+- Production-ready code  
 
 ---
 
@@ -351,7 +351,3 @@ VITE_API_URL=http://localhost:3000/api
 MIT License - Open source
 
 ---
-
-**Status**: ✅ Production Ready  
-**Version**: 1.0  
-**Created**: February 2026
