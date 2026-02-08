@@ -60,7 +60,7 @@ const createCandidate = async (req, res) => {
 
         const candidateData = { name, email, phone, jobTitle };
         if (req.file) {
-            console.log('CLOUDINARY FILE DATA:', req.file); // Debug log
+            // console.log('CLOUDINARY FILE DATA:', req.file);
             candidateData.resumeUrl = req.file.path || req.file.secure_url;
         }
 

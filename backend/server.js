@@ -27,7 +27,7 @@ app.use('/uploads', express.static(uploadsDir));
 app.use('/api/candidates', require('./routes/candidates'));
 app.use('/api/auth', require('./routes/auth'));
 
-app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date().toISOString() }));
+app.get('/api/health', (req, res) => res.json({ status: 'Server is Healthy and Alive to Conquer', time: new Date().toISOString() }));
 
 
 app.use((req, res, next) => res.status(404).json({ success: false, message: 'Route not found' }));

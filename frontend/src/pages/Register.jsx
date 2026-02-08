@@ -13,6 +13,7 @@ const Register = () => {
         confirmPassword: ''
     });
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const { register } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -29,11 +30,14 @@ const Register = () => {
             return;
         }
 
+        setLoading(true);
         try {
             await register(name, email, password);
             navigate('/');
         } catch (err) {
             setError(err.response?.data?.message || 'Registration failed');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -84,7 +88,7 @@ const Register = () => {
                                 onChange={onChange}
                                 required
                                 minLength="6"
-                                placeholder="••••••••"
+                                placeholder="********"
                                 className="focus:ring-[#162c44] focus:border-[#162c44]"
                             />
                             <Input
@@ -100,8 +104,16 @@ const Register = () => {
                             />
                         </div>
 
-                        <Button type="submit" className="w-full flex justify-center py-3 text-base shadow-lg shadow-[#162c44]/20 hover:shadow-[#162c44]/30">
-                            Create Account
+                        <Button type="submit" disabled={loading} className="w-full flex justify-center py-3 text-base shadow-lg shadow-[#162c44]/20 hover:shadow-[#162c44]/30 disabled:opacity-70 disabled:cursor-not-allowed">
+                            {loading ? (
+                                <span className="flex items-center gap-2">
+                                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Creating Account...
+                                </span>
+                            ) : 'Create Account'}
                         </Button>
 
                         <div className="text-center text-sm">
