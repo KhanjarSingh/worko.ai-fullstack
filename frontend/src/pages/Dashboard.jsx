@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Plus, Search, Trash2, FileText, Phone, Mail, User, Briefcase } from 'lucide-react';
+import { Plus, Search, Trash2, FileText, Phone, Mail, User, Briefcase, Clock, CheckCircle } from 'lucide-react';
 import api from '../api/axios';
 import { AuthContext } from '../context/AuthContext';
 import Card from '../components/Card';
@@ -92,31 +92,31 @@ const Dashboard = () => {
                             <User className="h-6 w-6" />
                         </div>
                     </Card>
-                    <Card className="flex items-center justify-between p-6">
+                    <Card className="flex items-center justify-between p-6 hover:border-yellow-200 transition-colors">
                         <div>
                             <p className="text-slate-500 text-sm font-medium">Pending</p>
-                            <p className="text-3xl font-bold text-slate-900 mt-1">{stats.pending}</p>
+                            <p className="text-3xl font-bold text-[#162c44] mt-1">{stats.pending}</p>
                         </div>
                         <div className="bg-yellow-50 p-3 rounded-xl text-yellow-600">
-                            <Briefcase className="h-6 w-6" />
+                            <Clock className="h-6 w-6" />
                         </div>
                     </Card>
-                    <Card className="flex items-center justify-between p-6">
+                    <Card className="flex items-center justify-between p-6 hover:border-blue-200 transition-colors">
                         <div>
                             <p className="text-slate-500 text-sm font-medium">Reviewed</p>
-                            <p className="text-3xl font-bold text-slate-900 mt-1">{stats.reviewed}</p>
+                            <p className="text-3xl font-bold text-[#162c44] mt-1">{stats.reviewed}</p>
                         </div>
                         <div className="bg-blue-50 p-3 rounded-xl text-blue-600">
-                            <Search className="h-6 w-6" />
+                            <CheckCircle className="h-6 w-6" />
                         </div>
                     </Card>
-                    <Card className="flex items-center justify-between p-6">
+                    <Card className="flex items-center justify-between p-6 hover:border-green-200 transition-colors">
                         <div>
                             <p className="text-slate-500 text-sm font-medium">Hired</p>
-                            <p className="text-3xl font-bold text-slate-900 mt-1">{stats.hired}</p>
+                            <p className="text-3xl font-bold text-[#162c44] mt-1">{stats.hired}</p>
                         </div>
                         <div className="bg-green-50 p-3 rounded-xl text-green-600">
-                            <User className="h-6 w-6" />
+                            <Briefcase className="h-6 w-6" />
                         </div>
                     </Card>
                 </div>
@@ -136,16 +136,19 @@ const Dashboard = () => {
                     />
                 </div>
                 <div className="h-8 w-px bg-slate-200 hidden md:block"></div>
-                <select
-                    className="w-full md:w-auto px-6 py-3 bg-transparent border-none focus:ring-0 text-slate-700 font-medium cursor-pointer"
-                    value={statusFilter}
-                    onChange={(e) => setStatusFilter(e.target.value)}
-                >
-                    <option value="">All Statuses</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Reviewed">Reviewed</option>
-                    <option value="Hired">Hired</option>
-                </select>
+                <div className="relative">
+                    <select
+                        className="w-full md:w-auto pl-6 pr-10 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#162c44]/20 focus:border-[#162c44] text-slate-700 font-medium cursor-pointer appearance-none shadow-sm hover:border-[#162c44]/30 transition-all"
+                        style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: `right 1rem center`, backgroundRepeat: `no-repeat`, backgroundSize: `1.2em 1.2em` }}
+                        value={statusFilter}
+                        onChange={(e) => setStatusFilter(e.target.value)}
+                    >
+                        <option value="">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Reviewed">Reviewed</option>
+                        <option value="Hired">Hired</option>
+                    </select>
+                </div>
             </div>
 
             {loading ? (
@@ -162,32 +165,32 @@ const Dashboard = () => {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {candidates.map((candidate) => (
-                        <Card key={candidate._id} className="flex flex-col h-full group">
+                        <Card key={candidate._id} className="flex flex-col h-full group hover:shadow-xl transition-shadow duration-300 border-slate-100">
                             <div className="flex justify-between items-start mb-6">
                                 <div>
-                                    <div className="flex items-center gap-3">
-                                        <div className="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-lg">
+                                    <div className="flex items-center gap-4">
+                                        <div className="h-12 w-12 rounded-full bg-[#162c44]/5 flex items-center justify-center text-[#162c44] font-bold text-xl">
                                             {candidate.name.charAt(0)}
                                         </div>
                                         <div>
-                                            <h3 className="text-lg font-bold text-slate-900 leading-tight">{candidate.name}</h3>
-                                            <p className="text-slate-500 text-sm">{candidate.jobTitle}</p>
+                                            <h3 className="text-lg font-bold text-[#162c44] leading-tight">{candidate.name}</h3>
+                                            <p className="text-slate-500 text-sm font-medium">{candidate.jobTitle}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <span className={`px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wide ${getStatusColor(candidate.status)}`}>
+                                <span className={`px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wide border ${getStatusColor(candidate.status)} border-opacity-20`}>
                                     {candidate.status}
                                 </span>
                             </div>
 
                             <div className="space-y-3 mb-8 flex-grow">
-                                <div className="flex items-center text-sm text-slate-600 bg-slate-50 p-2 rounded-lg">
+                                <div className="flex items-center text-sm text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
                                     <Mail className="h-4 w-4 mr-3 text-slate-400" />
-                                    <span className="truncate">{candidate.email}</span>
+                                    <span className="truncate font-medium">{candidate.email}</span>
                                 </div>
-                                <div className="flex items-center text-sm text-slate-600 bg-slate-50 p-2 rounded-lg">
+                                <div className="flex items-center text-sm text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
                                     <Phone className="h-4 w-4 mr-3 text-slate-400" />
-                                    {candidate.phone}
+                                    <span className="font-medium">{candidate.phone}</span>
                                 </div>
                             </div>
 
@@ -199,28 +202,31 @@ const Dashboard = () => {
                                         rel="noopener noreferrer"
                                         className="block w-full"
                                     >
-                                        <Button variant="secondary" className="w-full flex items-center justify-center gap-2 group-hover:border-indigo-200 group-hover:text-indigo-600 transition-colors">
+                                        <Button variant="secondary" className="w-full flex items-center justify-center gap-2 group-hover:border-[#162c44]/30 group-hover:text-[#162c44] transition-colors py-3 font-semibold shadow-sm">
                                             <FileText className="h-4 w-4" />
                                             View Resume
                                         </Button>
                                     </a>
                                 ) : (
-                                    <div className="text-center text-sm text-slate-400 italic py-2">No Resume Available</div>
+                                    <div className="text-center text-sm text-slate-400 italic py-2 bg-slate-50 rounded-lg">No Resume Available</div>
                                 )}
 
-                                <div className="flex items-center gap-2 pt-4 border-t border-slate-100">
-                                    <select
-                                        className="flex-grow text-sm border-slate-200 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 py-1.5 bg-slate-50"
-                                        value={candidate.status}
-                                        onChange={(e) => handleStatusUpdate(candidate._id, e.target.value)}
-                                    >
-                                        <option value="Pending">Pending</option>
-                                        <option value="Reviewed">Reviewed</option>
-                                        <option value="Hired">Hired</option>
-                                    </select>
+                                <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+                                    <div className="relative flex-grow">
+                                        <select
+                                            className="w-full text-sm font-semibold text-[#162c44] border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#162c44]/20 focus:border-[#162c44] py-2.5 pl-4 pr-10 bg-slate-50 hover:bg-white hover:shadow-md transition-all cursor-pointer appearance-none"
+                                            style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23162c44' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: `right 1rem center`, backgroundRepeat: `no-repeat`, backgroundSize: `1.2em 1.2em` }}
+                                            value={candidate.status}
+                                            onChange={(e) => handleStatusUpdate(candidate._id, e.target.value)}
+                                        >
+                                            <option value="Pending">Pending</option>
+                                            <option value="Reviewed">Reviewed</option>
+                                            <option value="Hired">Hired</option>
+                                        </select>
+                                    </div>
                                     <button
                                         onClick={() => handleDelete(candidate._id)}
-                                        className="text-slate-400 hover:text-red-600 p-2 rounded-full hover:bg-red-50 transition-colors"
+                                        className="text-slate-400 hover:text-red-600 p-2.5 rounded-xl hover:bg-red-50 border border-transparent hover:border-red-100 transition-all"
                                         title="Delete Candidate"
                                     >
                                         <Trash2 className="h-4 w-4" />

@@ -38,17 +38,17 @@ const Register = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen flex items-center justify-center bg-white py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
                 <div className="text-center">
-                    <h2 className="mt-6 text-3xl font-bold tracking-tight text-slate-900">
+                    <h2 className="mt-6 text-3xl font-bold tracking-tight text-[#162c44]">
                         Create an account
                     </h2>
-                    <p className="mt-2 text-sm text-slate-600">
+                    <p className="mt-2 text-sm text-slate-500">
                         Enter your details to get started
                     </p>
                 </div>
-                <Card className="mt-8 space-y-6 p-8">
+                <Card className="mt-8 space-y-6 p-8 border border-slate-100 shadow-xl shadow-slate-200/50">
                     <form className="space-y-5" onSubmit={handleSubmit}>
                         {error && (
                             <div className="p-3 rounded-md bg-red-50 border border-red-100 text-sm text-red-600 font-medium">
@@ -63,7 +63,8 @@ const Register = () => {
                                 value={name}
                                 onChange={onChange}
                                 required
-                                placeholder="John Doe"
+                                placeholder="Enter your full name"
+                                className="focus:ring-[#162c44] focus:border-[#162c44]"
                             />
                             <Input
                                 label="Email"
@@ -73,6 +74,7 @@ const Register = () => {
                                 onChange={onChange}
                                 required
                                 placeholder="name@example.com"
+                                className="focus:ring-[#162c44] focus:border-[#162c44]"
                             />
                             <Input
                                 label="Password"
@@ -83,6 +85,7 @@ const Register = () => {
                                 required
                                 minLength="6"
                                 placeholder="••••••••"
+                                className="focus:ring-[#162c44] focus:border-[#162c44]"
                             />
                             <Input
                                 label="Confirm Password"
@@ -93,16 +96,17 @@ const Register = () => {
                                 required
                                 minLength="6"
                                 placeholder="••••••••"
+                                className="focus:ring-[#162c44] focus:border-[#162c44]"
                             />
                         </div>
 
-                        <Button type="submit" className="w-full flex justify-center py-2.5">
+                        <Button type="submit" className="w-full flex justify-center py-3 text-base shadow-lg shadow-[#162c44]/20 hover:shadow-[#162c44]/30">
                             Create Account
                         </Button>
 
                         <div className="text-center text-sm">
-                            <span className="text-slate-600">Already have an account? </span>
-                            <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
+                            <span className="text-slate-500">Already have an account? </span>
+                            <Link to="/login" className="font-semibold text-[#162c44] hover:text-[#1b3a5b] transition-colors">
                                 Sign in
                             </Link>
                         </div>

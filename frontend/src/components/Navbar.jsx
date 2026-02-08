@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Briefcase, LogOut, User } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import Button from './Button';
@@ -7,10 +7,11 @@ import Button from './Button';
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogout = () => {
         logout();
-        navigate('/login');
+        navigate('/');
     };
 
     return (
@@ -24,20 +25,25 @@ const Navbar = () => {
                     <div className="flex items-center gap-4">
                         {user ? (
                             <>
+                                {location.pathname !== '/dashboard' && (
+                                    <Link to="/dashboard">
+                                        <Button variant="ghost" className="text-slate-600 hover:text-[#162c44]">Dashboard</Button>
+                                    </Link>
+                                )}
                                 <div className="flex items-center gap-3 px-3 py-1.5 bg-slate-50 rounded-full border border-slate-100">
-                                    <div className="bg-indigo-100 p-1 rounded-full text-indigo-600">
+                                    <div className="bg-[#162c44]/10 p-1 rounded-full text-[#162c44]">
                                         <User className="h-4 w-4" />
                                     </div>
                                     <span className="font-medium text-slate-700 text-sm hidden sm:block pr-1">{user.name}</span>
                                 </div>
-                                <Button variant="ghost" onClick={handleLogout} className="text-slate-500 hover:text-red-600 hover:bg-red-50">
-                                    <LogOut className="h-5 w-5" />
+                                <Button variant="ghost" onClick={handleLogout} className="text-slate-500 hover:!text-red-600 hover:!bg-red-50 group">
+                                    <LogOut className="h-5 w-5 group-hover:text-red-600 transition-colors" />
                                 </Button>
                             </>
                         ) : (
                             <div className="flex gap-3">
                                 <Link to="/login"><Button variant="ghost">Sign In</Button></Link>
-                                <Link to="/register"><Button className="shadow-indigo-200 shadow-md">Get Started</Button></Link>
+                                <Link to="/register"><Button className="shadow-md shadow-slate-200">Get Started</Button></Link>
                             </div>
                         )}
                     </div>

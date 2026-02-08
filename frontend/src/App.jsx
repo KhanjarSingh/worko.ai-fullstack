@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import CreateCandidate from './pages/CreateCandidate';
+import LandingPage from './pages/LandingPage';
 
 const ProtectedRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
@@ -19,15 +20,40 @@ const ProtectedRoute = ({ children }) => {
     return children;
 };
 
+const PublicRoute = ({ children }) => {
+    const { user, loading } = useContext(AuthContext);
+
+    if (loading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
+
+    if (user) {
+        return <Navigate to="/dashboard" replace />;
+    }
+
+    return children;
+};
+
 const App = () => {
     return (
         <div className="min-h-screen bg-white">
             <Navbar />
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+                <Route path="/" element={
+                    <PublicRoute>
+                        <LandingPage />
+                    </PublicRoute>
+                } />
+                <Route path="/login" element={
+                    <PublicRoute>
+                        <Login />
+                    </PublicRoute>
+                } />
+                <Route path="/register" element={
+                    <PublicRoute>
+                        <Register />
+                    </PublicRoute>
+                } />
                 <Route
-                    path="/"
+                    path="/dashboard"
                     element={
                         <ProtectedRoute>
                             <Dashboard />
